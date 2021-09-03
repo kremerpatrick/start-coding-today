@@ -46,7 +46,7 @@ You will need to install:
 
 You also need a code editor. [VS Code](https://code.visualstudio.com/download) is free and cross-platform. 
 
-If you want to start learning Git, which we strongly recommend if you're going to learn about code, you can [install it](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git). You can then clone this code repo with `git clone https://github.com/nvibert/start-coding-today.git`
+If you want to start learning Git, which we strongly recommend if you're going to learn about code, you can [install it](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git). You can then clone this code repo with `git clone https://github.com/kremerpatrick/start-coding-today.git`
 
 Alternatively, you can download the code in zip format from the [repo](https://github.com/nvibert/start-coding-today) ![](img/github-zip.png)
 
