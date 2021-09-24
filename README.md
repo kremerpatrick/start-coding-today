@@ -48,7 +48,7 @@ You also need a code editor. [VS Code](https://code.visualstudio.com/download) i
 
 If you want to start learning Git, which we strongly recommend if you're going to learn about code, you can [install it](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git). You can then clone this code repo with `git clone https://github.com/kremerpatrick/start-coding-today.git`
 
-Alternatively, you can download the code in zip format from the [repo](https://github.com/nvibert/start-coding-today) ![](img/github-zip.png)
+Alternatively, you can download the code in zip format from the [repo](https://github.com/kremerpatrick/start-coding-today.git) ![](img/github-zip.png)
 
 ### Part 3 - PowerCLI
 
@@ -169,7 +169,7 @@ Let's go and practice some of this. Go to Visual Studio Code and open the Termin
 
 Clone this GitHub repo, using the command:
 
-`git clone https://github.com/nvibert/start-coding-today.git`
+`git clone https://github.com/kremerpatrick/start-coding-today.git`
 
 If it's your first time using Git, well done!
 
