@@ -278,11 +278,11 @@ The way it works with the vSphere APIs is that you need to get a temporary token
 
 For example, on a Mac:
 
-`curl -k -i -u $TF_VAR_vsphere_user:$TF_VAR_vsphere_password -X POST -c token.txt https://$TF_VAR_vsphere_server/rest/com/vmware/cis/session`
+`curl -k -i -u cloudadmin@vmc.local:password -X POST -c token.txt https://vcenter.sddc-A-B-C-D.vmwarevmc.com/rest/com/vmware/cis/session`
 
 On a Windows machine, it would be:
 
-`curl -k -i -u %TF_VAR_vsphere_user%:%TF_VAR_vsphere_password% -X POST -c token.txt https://%TF_VAR_vsphere_server%/rest/com/vmware/cis/session`
+`curl -k -i -u cloudadmin@vmc.local:password -X POST -c token.txt https://vcenter.sddc-A-B-C-D.vmwarevmc.com/rest/com/vmware/cis/session`
 
 The output of the command would be something like this:
 
