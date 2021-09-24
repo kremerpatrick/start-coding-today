@@ -5,7 +5,7 @@ Co-presented by Patrick Kremer and Michael Fleisher
 
 ## Objectives
 
-In 45 minutes, attendees will be able to learn and practice coding with a VMware environment, giving them a little taste of the power of automation.
+In 30 minutes, attendees will be able to learn and practice coding with a VMware environment, giving them a little taste of the power of automation.
 
 ## Requirements
 
@@ -19,6 +19,7 @@ That's it. No coding experience required.
 * Run a PowerCLI script against a vCenter
 * Run API calls with Curl against a vCenter
 * Deploy VMware resources with Terraform
+* Invoke REST APIS with Postman
 * Invoke REST APIs with Python
 
 ## Session Structure
@@ -43,6 +44,7 @@ You will need to install:
 - [Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 - [PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.1)
 - [PowerCLI](https://code.vmware.com/docs/13638/powercli-12-3-0-user-s-guide/GUID-ACD2320C-D00F-4CCE-B968-B3C41A95C085.html)
+- [Postman](https://www.postman.com/downloads/)
 
 You also need a code editor. [VS Code](https://code.visualstudio.com/download) is free and cross-platform. 
 
@@ -294,15 +296,64 @@ You can then use the value of the token to make an API call, for example, to get
 
 On a Mac:
 
-`curl -k -i -b token.txt https://$TF_VAR_vsphere_server/rest/vcenter/folder`
+`curl -k -i -b token.txt https://vcenter.sddc-A-B-C-D.vmwarevmc.com/rest/vcenter/folder`
 
 On a Windows machine:
 
-`curl -k -i -b token.txt https://%TF_VAR_vsphere_server%/rest/vcenter/folder`
+`curl -k -i -b token.txt https://vcenter.sddc-A-B-C-D.vmwarevmc.com/rest/vcenter/folder`
 
-### Part 6 - REST APIs in Python
+Below is the truncated output of a succesful command. The folders will be shown in raw JSON format. 
 
-cURL is great for testing REST APIs, but to truly use the API you will need to use a programming language.
+```bash
+HTTP/1.1 200 OK
+date: Fri, 24 Sep 2021 20:06:05 GMT
+content-type: application/json
+x-envoy-upstream-service-time: 216
+server: envoy
+transfer-encoding: chunked
+
+{"value":[{"folder":"group-d1","name":"Datacenters","type":"DATACENTER"},{"folder":"group-h23","name":"host","type":"HOST"},{"folder":"group-n25","name":"network","type":"NETWORK"},{"folder":"group-n57","name":"VMC Networks","type":"NETWORK"},{"folder":"group-s24","name":"datastore","type":"DATASTORE"}
+```
+
+### Part 6 - REST APIs in Postman
+
+cURL is good for a quick test of an API, but a more advanced tool for working with REST APIs is Postman. 
+
+Create a new request by clicking on the plus icon
+![New Postman Request](img/postman-new-request.png?raw=true)
+<BR>
+<BR>
+<BR>
+Paste in the vCenter Session URL `https://vcenter.sddc-A-B-C-D.vmwarevmc.com/rest/com/vmware/cis/session`. Switch the request type from GET to POST.
+![vCenter folder REST URL](img/postman-session-URL.png)
+<BR>
+<BR>
+<BR>
+In the Authorization tab , select Basic Auth
+![Postman basic auth](img/postman-basic-auth.png)
+<BR>
+<BR>
+<BR>
+Enter your vCenter username and password
+![Postman authentication credentials](img/postman-enter-creds.png)
+<BR>
+<BR>
+<BR>
+Click send. Note the value that gets returned - this is your sesssion ID and is the same information that was stored in token.txt in the cURL example above. You will need this value for the next API call.
+![Send vCenter Session GET call](img/postman-send-session.png)
+<BR>
+<BR>
+<BR>
+Click plus to create another API call. Paste the vCenter Folder URL `https://vcenter.sddc-A-B-C-D.vmwarevmc.com/rest/vcenter/folder` into the URL box. This one will be a GET instead of a POST. In the Auth tab, type `vmware-api-session-id` into the Key field. Paste the value from the prior API call into the Value field. Click Send.
+![vCenter folder REST URL](img/postman-folder-auth.png)
+<BR>
+<BR>
+<BR>
+You can now see the JSON output showing all of the vCenter folders. The default `Pretty` view is easy-to-read formatted JSON. 
+![vCenter folder JSON](img/postman-folder-json.png)
+### Part 7 - REST APIs in Python
+
+cURL and Postman are great for testing REST APIs, but to truly use the API you will need to use a programming language.
 
 Open [vcenter-REST.py](python/vcenter-REST.py)
 
