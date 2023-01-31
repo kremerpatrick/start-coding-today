@@ -19,8 +19,8 @@ That's it. No coding experience required.
 * Run a PowerCLI script against a vCenter
 * Run API calls with Curl against a vCenter
 * Deploy VMware resources with Terraform
-* Invoke REST APIS with Postman
 * Invoke REST APIs with Python
+* Invoke REST APIS with Postman (optional)
 
 ## Session Structure
 
@@ -315,7 +315,41 @@ transfer-encoding: chunked
 {"value":[{"folder":"group-d1","name":"Datacenters","type":"DATACENTER"},{"folder":"group-h23","name":"host","type":"HOST"},{"folder":"group-n25","name":"network","type":"NETWORK"},{"folder":"group-n57","name":"VMC Networks","type":"NETWORK"},{"folder":"group-s24","name":"datastore","type":"DATASTORE"}
 ```
 
-### Part 6 - REST APIs in Postman
+### Part 6 - REST APIs in Python
+
+cURL and Postman are great for testing REST APIs, but to truly use the API you will need to use a programming language.
+
+Open [vcenter-REST.py](python/vcenter-REST.py)
+
+This program makes the same API calls that we did with cURL. 
+
+Fill in the environment variables with your vCenter username, password, and URL
+```
+# Environment variables
+VC_USERNAME = 'cloudadmin@vmc.local'
+VC_PASSWORD = ''
+VC_URL = ''
+```
+Execute the program:
+
+`python vcenter-REST.py`
+
+Inspect the code and the output. 
+
+Now, try to write a GET call to list the hosts in your vCenter
+If you need help, the code to do it is in vcenter-REST-host.py(python/vcenter-REST-host.py)
+
+### Additional Resources
+
+PowerCLI resources can be found [here](https://developer.vmware.com/powercli).
+
+Official Terraform providers can be found [here](https://registry.terraform.io/namespaces/vmware).
+
+Additional Terraform scripts and examples can be found on Nico's blog [here](https://nicovibert.com).
+
+The Curl script used above was found [here](https://www.stevetrefethen.com/accessing-vmware-vcenter-rest-api-authentication-from-curl/).
+
+### Part 7 - REST APIs in Postman
 
 cURL is good for a quick test of an API, but a more advanced tool for working with REST APIs is Postman. 
 
@@ -351,37 +385,3 @@ Click plus to create another API call. Paste the vCenter Folder URL `https://vce
 <BR>
 You can now see the JSON output showing all of the vCenter folders. The default `Pretty` view is easy-to-read formatted JSON. 
 ![vCenter folder JSON](img/postman-folder-json.png)
-### Part 7 - REST APIs in Python
-
-cURL and Postman are great for testing REST APIs, but to truly use the API you will need to use a programming language.
-
-Open [vcenter-REST.py](python/vcenter-REST.py)
-
-This program makes the same API calls that we did with cURL. 
-
-Fill in the environment variables with your vCenter username, password, and URL
-```
-# Environment variables
-VC_USERNAME = 'cloudadmin@vmc.local'
-VC_PASSWORD = ''
-VC_URL = ''
-```
-Execute the program:
-
-`python vcenter-REST.py`
-
-Inspect the code and the output. 
-
-Now, try to write a GET call to list the hosts in your vCenter
-If you need help, the code to do it is in vcenter-REST-host.py(python/vcenter-REST-host.py)
-
-### Additional Resources
-
-PowerCLI resources can be found [here](https://developer.vmware.com/powercli).
-
-Official Terraform providers can be found [here](https://registry.terraform.io/namespaces/vmware).
-
-Additional Terraform scripts and examples can be found on Nico's blog [here](https://nicovibert.com).
-
-The Curl script used above was found [here](https://www.stevetrefethen.com/accessing-vmware-vcenter-rest-api-authentication-from-curl/).
-
